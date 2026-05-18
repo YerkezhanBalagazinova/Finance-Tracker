@@ -64,4 +64,12 @@ def exp_bycat(transactions,year,month):
 
     return cat_dict
 
+def overspending(transactions,year,month, cat_limit):
+    brdw=exp_bycat(transactions,year,month)
+    oversp=[]
 
+    for cat in cat_limit:
+        if cat in brdw and brdw[cat]>cat_limit[cat]:
+            oversp.append(cat)
+    
+    return oversp
