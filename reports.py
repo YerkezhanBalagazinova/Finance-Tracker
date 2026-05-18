@@ -1,4 +1,4 @@
-def month_sumex(transactions, year, month):
+def month_exp(transactions, year, month):
     sumofexpenses=0
 
     for t in transactions: 
@@ -37,3 +37,31 @@ def month_sum(transactions, year, month):
     print("expenses:", expenses)
     print("incomes:", incomes)
     print("balance:", balance)
+
+def exp_bycat(transactions,year,month):
+    cat_dict={}
+
+    for t in transactions:
+        if t["type"] !="expense":
+            continue
+        
+        date_str=t["date"]
+        parts=date_str.split('-')
+        trsn_year=int(parts[0])
+        trsn_month=int(parts[1])
+
+        if trsn_year!=year or trsn_month!=month:
+            continue
+
+        if t["type"]=="expense":
+            cat=t["category"]
+            amount=t["amount"]
+
+            if cat in cat_dict:
+                cat_dict[cat]+=amount
+            else:
+                cat_dict[cat]=amount
+
+    return cat_dict
+
+
