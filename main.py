@@ -32,8 +32,39 @@ def main():
       print("3)Overspending")
       print("4)Exit")
 
-      choice = input("Select: ")
+      choice=input("Select: ")
       if not choice.isdigit():
-          print("select a number from 1 to 4")
-          continue
+          choice=int(choice)
+
+          if choice==1:
+              year=int(input("Year: "))
+              month=int(input("Month: "))
+              month_sum(transactions, year, month)
+
+          elif choice==2:
+              year=int(input("Year: "))
+              month=int(input("Month: "))
+              breakdown=exp_bycat(transactions, year, month)
+              for cat, amount in breakdown.items():
+                print(f"{cat}: {amount}")
+
+          elif choice==3:
+              year=int(input("Year: "))
+              month=int(input("Month: "))
+              limits={"food": 500, "transport": 300, "entertainment": 200}
+              result= overspending(transactions, year, month, limits)
+              if result:
+                 print("Overspending in:", result)
+              else:
+                 print("No overspending")
+
+          elif choice==4:
+             print("bye bye")
+             break
+
+          else:
+              print("select a number from 1 to 4")
+              continue
+          
+      
       
