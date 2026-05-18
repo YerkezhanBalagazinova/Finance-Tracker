@@ -2,7 +2,7 @@ from models import Income, Expense
 
 
 class FinanceTracker:
-    def init(self):
+    def __init__(self):
         self.transactions = []
 
     def add_transaction(self, transaction):
