@@ -33,7 +33,7 @@ def main():
       print("4)Exit")
 
       choice=input("Select: ")
-      if not choice.isdigit():
+      if choice.isdigit():
           choice=int(choice)
 
           if choice==1:
@@ -63,7 +63,7 @@ def main():
              break
 
           else:
-              print("select a number from 1 to 4")
+              print("selectt 1-4")
               continue
           
       
