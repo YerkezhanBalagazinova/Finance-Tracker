@@ -1,75 +1,45 @@
-def month_exp(transactions, year, month):
+def month_exp(tracker, year, month):
     sumofexpenses=0
+    transactions=tracker.get_transactions_by_month(year,month)
 
     for t in transactions: 
-        if t["type"]=="expense":
-            date_str=t["date"]
-            parts=date_str.split('-') 
-            trsn_year=int(parts[0])
-            trsn_month=int(parts[1])
-
-            if trsn_year==year and trsn_month==month:
-                sumofexpenses+=t["amount"]
-    
+        if t.transaction_type.lower()=="expense":
+            sumofexpenses+=t.amount
     return sumofexpenses
 
-def month_come(transactions, year, month):
+
+def month_come(tracker, year, month):
     sumofincomes=0
+    transactions=tracker.get_transactions_by_month(year,month)
 
     for t in transactions: 
-        if t["type"]=="income":
-            date_str=t["date"]
-            parts=date_str.split('-') 
-            trsn_year=int(parts[0])
-            trsn_month=int(parts[1])
-
-            if trsn_year==year and trsn_month==month:
-                sumofincomes+=t["amount"]
-    
+        if t.transaction_type.lower()=="income":
+            sumofincomes+=t.amount
     return sumofincomes
 
-def month_sum(transactions, year, month):
-    expenses=month_exp(transactions, year,month)
-    incomes=month_come(transactions, year,month)
+
+
+def month_sum(tracker, year, month):
+    expenses=month_exp(tracker, year,month)
+    incomes=month_come(tracker, year,month)
     balance= incomes-expenses
 
-    print("monthly report {year}-{month:02d}:")
+    print(f"monthly report {year}-{month:02d}:")
     print("expenses:", expenses)
     print("incomes:", incomes)
     print("balance:", balance)
 
-def exp_bycat(transactions,year,month):
-    cat_dict={}
 
-    for t in transactions:
-        if t["type"] !="expense":
-            continue
-        
-        date_str=t["date"]
-        parts=date_str.split('-')
-        trsn_year=int(parts[0])
-        trsn_month=int(parts[1])
+def exp_bycat(tracker, year, month):
+    return tracker.get_category_breakdown(year,month)
 
-        if trsn_year!=year or trsn_month!=month:
-            continue
 
-        if t["type"]=="expense":
-            cat=t["category"]
-            amount=t["amount"]
 
-            if cat in cat_dict:
-                cat_dict[cat]+=amount
-            else:
-                cat_dict[cat]=amount
-
-    return cat_dict
-
-def overspending(transactions,year,month, cat_limit):
-    brdw=exp_bycat(transactions,year,month)
+def overspending(tracker,year,month, cat_limit):
+    brdw=tracker.get_category_breakdown(year,month)
     oversp=[]
 
     for cat in cat_limit:
         if cat in brdw and brdw[cat]>cat_limit[cat]:
             oversp.append(cat)
-    
     return oversp
