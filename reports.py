@@ -28,3 +28,12 @@ def month_come(transactions, year, month):
     
     return sumofincomes
 
+def month_sum(transactions, year, month):
+    expenses=month_exp(transactions, year,month)
+    incomes=month_come(transactions, year,month)
+    balance= incomes-expenses
+
+    print("monthly report {year}-{month:02d}:")
+    print("expenses:", expenses)
+    print("incomes:", incomes)
+    print("balance:", balance)
