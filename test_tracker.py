@@ -144,5 +144,5 @@ class TestFinanceTracker(unittest.TestCase):
         )
 
 
-if name == "main":
+if __name__ == "__main__":
     unittest.main()
