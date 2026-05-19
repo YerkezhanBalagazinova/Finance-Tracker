@@ -19,3 +19,6 @@ How to run:
   - category breakdown
   - overspending check (default limits: food=500, transport=300, entertainment=200)
   - exit
+
+    
+[ITP2 Final Project presentation.pdf](https://github.com/user-attachments/files/27987846/ITP2.Final.Project.presentation.pdf)
