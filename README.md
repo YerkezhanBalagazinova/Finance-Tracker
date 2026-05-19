@@ -10,7 +10,8 @@ Description: A simple console app to track income and expenses.
 - Show expence breakdown by category
 - Detect overspending (compare with category limits)
 
-How to run: 1. Install Python 3.7 or higher
+How to run: 
+1. Install Python 3.7 or higher
 2. Clone this  repo
 3. Run 'python main.py'
 4. Use menu:
