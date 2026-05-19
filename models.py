@@ -1,5 +1,4 @@
-from abc import ABC
-class Transaction(ABC):
+class Transaction:
     def __init__(self,amount,date,transaction_type):
         self.amount=amount 
         self.date=date
